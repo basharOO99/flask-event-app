@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title or 'Create Event' }}{% endblock %}
+
+{% block content %}
+<h2>{{ title or 'Create Event' }}</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <div>
+        {{ form.name.label }}<br>
+        {{ form.name(size=40, placeholder="Enter event name") }}
+        {% for err in form.name.errors %}
+            <span class="text-error">{{ err }}</span>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.description.label }}<br>
+        {{ form.description(rows=4, cols=40, placeholder="Enter event description") }}
+        {% for err in form.description.errors %}
+            <span class="text-error">{{ err }}</span>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.location.label }}<br>
+        {{ form.location(size=40, placeholder="Enter event location") }}
+        {% for err in form.location.errors %}
+            <span class="text-error">{{ err }}</span>
+        {% endfor %}
+    </div>
+
+    <div>
+        {{ form.date.label }}<br>
+        {{ form.date(placeholder="YYYY-MM-DD HH:MM:SS") }}
+        {% for err in form.date.errors %}
+            <span class="text-error">{{ err }}</span>
+        {% endfor %}
+        <small>Format: YYYY-MM-DD HH:MM:SS</small>
+    </div>
+
+    <div style="margin-top:10px;">
+        {{ form.submit(class="btn btn-success") }}
+    </div>
+</form>
+{% endblock %}

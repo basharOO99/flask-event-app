@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Upcoming Events</h2>
+
+<div id="events">
+    {% for event in events %}
+        <div class="event">
+            <h3><a href="{{ url_for('event_detail', event_id=event.id) }}">{{ event.name }}</a></h3>
+            <small>{{ event.date_posted.strftime('%Y-%m-%d %H:%M') }}</small>
+            <p>{{ event.description }}</p>
+            <p><strong>Location:</strong> {{ event.location or 'Not specified' }}</p>
+        </div>
+    {% else %}
+        <p>No Events Found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
